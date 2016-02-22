@@ -73,16 +73,21 @@ func main() {
 
 			fmt.Println("compiling", ifilename)
 			ifile, _ := os.Open(ifilename)
-			fmt.Println("parsing")
 			yyParse(NewLexer(ifile))
+
+			fmt.Println("\nSyntax Tree:")
+			fmt.Println("============")
 			syntree.Print(root, 0)
 			table := make(symtbl.SymTbl)
 			table.BuildTable(root)
-			fmt.Println("=====")
+
+			fmt.Println("\nSymbol Table:")
+			fmt.Println("=============")
 			table.PrintTable()
-			fmt.Println("analyze")
 			table.CheckTable(root)
-			fmt.Println("code generation")
+
+			fmt.Println("\nCode Generation:")
+			fmt.Println("================")
 			gen := new(gen.Gen)
 			gen.Generate(root, &table, ofilename)
 		}

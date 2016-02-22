@@ -74,7 +74,6 @@ func (t *SymTbl) BuildTable(node *syntree.Node) {
 
 func (t *SymTbl) PrintTable() {
 	table := *t
-	fmt.Printf("Symbol Table:\n")
 	fmt.Printf("Var Loc LineNumbers\n")
 	fmt.Printf("=== === ===========\n")
 	for i, e := range table {

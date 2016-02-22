@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/codegangsta/cli"
+	"gitlab.com/bantl23/python/gen"
+	"gitlab.com/bantl23/python/symtbl"
+	"gitlab.com/bantl23/python/syntree"
 	"os"
 	"strings"
 )
@@ -62,17 +65,26 @@ func main() {
 
 		fmt.Printf("options: [parse=%t, analyze=%t, code=%t, echo=%t, trace=%t]\n",
 			parse, analyze, code, echo, trace)
-		for _, ifile := range c.Args() {
-			if strings.HasSuffix(ifile, ".tny") == false {
-				ifile = ifile + ".tny"
+		for _, ifilename := range c.Args() {
+			if strings.HasSuffix(ifilename, ".tny") == false {
+				ifilename = ifilename + ".tny"
 			}
-			ofile := strings.TrimSuffix(ifile, ".tny") + ".tm"
+			ofilename := strings.TrimSuffix(ifilename, ".tny") + ".tm"
 
-			fmt.Println("compiling", ifile)
-			fmt.Println("scan")
-			fmt.Println("parse")
+			fmt.Println("compiling", ifilename)
+			ifile, _ := os.Open(ifilename)
+			fmt.Println("parsing")
+			yyParse(NewLexer(ifile))
+			syntree.Print(root, 0)
+			table := make(symtbl.SymTbl)
+			table.BuildTable(root)
+			fmt.Println("=====")
+			table.PrintTable()
 			fmt.Println("analyze")
-			fmt.Println("codegen", ofile)
+			table.CheckTable(root)
+			fmt.Println("code generation")
+			gen := new(gen.Gen)
+			gen.Generate(root, &table, ofilename)
 		}
 	}
 	app.Run(os.Args)

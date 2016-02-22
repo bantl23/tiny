@@ -1,0 +1,5 @@
+*.tm
+tiny
+tiny.nn.go
+y.go
+y.output

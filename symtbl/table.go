@@ -2,7 +2,7 @@ package symtbl
 
 import (
 	"fmt"
-	"gitlab.com/bantl23/python/syntree"
+	"github.com/bantl23/tiny/syntree"
 )
 
 type Bucket struct {
@@ -16,7 +16,6 @@ var Location int = 0
 
 func (s *SymTbl) Insert(name string, line int, memLoc int) {
 	table := *s
-	fmt.Printf("%+v %+v %+v\n", name, line, memLoc)
 	_, ok := table[name]
 	if ok == true {
 		table[name].Lines = append(table[name].Lines, line)
@@ -75,6 +74,9 @@ func (t *SymTbl) BuildTable(node *syntree.Node) {
 
 func (t *SymTbl) PrintTable() {
 	table := *t
+	fmt.Printf("Symbol Table:\n")
+	fmt.Printf("Var Loc LineNumbers\n")
+	fmt.Printf("=== === ===========\n")
 	for i, e := range table {
 		fmt.Printf("%+v: %+v %+v\n", i, e.MemLoc, e.Lines)
 	}

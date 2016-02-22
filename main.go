@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/bantl23/tiny/gen"
+	"github.com/bantl23/tiny/symtbl"
+	"github.com/bantl23/tiny/syntree"
 	"github.com/codegangsta/cli"
-	"gitlab.com/bantl23/python/gen"
-	"gitlab.com/bantl23/python/symtbl"
-	"gitlab.com/bantl23/python/syntree"
 	"os"
 	"strings"
 )

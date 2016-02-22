@@ -2,8 +2,8 @@ package gen
 
 import (
 	"fmt"
-	"gitlab.com/bantl23/python/symtbl"
-	"gitlab.com/bantl23/python/syntree"
+	"github.com/bantl23/tiny/symtbl"
+	"github.com/bantl23/tiny/syntree"
 	"os"
 )
 

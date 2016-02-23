@@ -16,10 +16,16 @@ Tiny Compiler
 
 * syntree
   * Syntax Tree Implementation
+    * Types
+    * Tree traversal
 * symtbl
   * Symbol Tree Implementation
+    * Table implemented as a HashMap
+    * Checks semantics
 * gen
   * Code Generation Implementation
+    * Emits code
+    * Generates code
 
 ## TODO
 

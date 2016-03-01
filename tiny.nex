@@ -18,7 +18,7 @@
 /;/          { return SEMI }
 /[0-9]+/     { return NUM }
 /[a-zA-Z]+/  { return ID }
-/[ \t\n]+/   { /* white space */ }
+/[ \t\r\n]+/ { /* white space */ }
 /{[^\{\}]*}/ { /* comments */ }
 /./          { return ERROR }
 //
